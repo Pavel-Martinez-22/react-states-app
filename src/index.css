@@ -1,0 +1,358 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  background-color: #efefef;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  width: 100%;
+  max-width: 800px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #333;
+  box-shadow: 0px 0px 15px gray;
+}
+
+.Header,
+.Footer {
+  width: 100%;
+  background-color: #66d8f5;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header h1 {
+  font-size: 1.5rem;
+}
+
+.Header svg {
+  font-size: 2rem;
+}
+
+.Footer {
+  padding: 0.75rem;
+  display: grid;
+  place-content: center;
+}
+
+.Nav {
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.searchForm {
+  width: 80%;
+  padding: 1rem 0 0 0.75rem;
+}
+
+.searchForm input[type="text"] {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.searchForm label,
+.FunFactsPage label {
+  position: absolute;
+  left: -99999px;
+}
+
+.Nav ul {
+  color: #fff;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Nav li {
+  padding: 1rem;
+}
+
+.Nav li:hover,
+.Nav li:focus {
+  padding: 1rem;
+}
+
+.Nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Nav li:hover,
+.Nav li:focus,
+.Nav li:hover a,
+.Nav li:focus a {
+  background-color: #eee;
+  color: #333;
+}
+
+.Nav li:hover a,
+.Nav li:focus a {
+  cursor: pointer;
+}
+
+.loading {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.Home,
+.NewFunFact,
+.FunFactsPage,
+.StatePage,
+.About,
+.Missing {
+  width: 100%;
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.state {
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.FunFactsPage h2 {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.FunFactsPage input[type="text"] {
+  font: inherit;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  margin: 0;
+}
+.FunFactsPage input[type="text"]:not(:read-only) {
+  padding: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  color: red;
+  background-color: #fffbe6;
+}
+
+.Home .state a {
+  text-decoration: none;
+}
+
+.Home .state a,
+.Home .state a:visited {
+  color: #000;
+}
+
+.state:first-child {
+  margin-top: 0;
+}
+
+.state:last-child {
+  border-bottom: none;
+}
+
+.stateCapital {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.stateInfo {
+  margin: 1rem 0;
+}
+
+.newFunFactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newFunFactForm label {
+  margin-top: 1rem;
+}
+
+.newFunFactForm input[type="text"],
+.newFunFactForm textarea,
+.newFunFactForm select {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+  outline: none;
+}
+
+.newFunFactForm select {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.newFunFactForm textarea {
+  height: 100px;
+}
+
+.newFunFactForm button {
+  margin-top: 1rem;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.Missing h2,
+.StatePage h2 {
+  margin-bottom: 1rem;
+}
+
+.StatePage h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Missing p,
+.StatePage p {
+  margin-top: 1rem;
+}
+
+.About p {
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.StatePage button,
+.FunFactsPage button {
+  height: 48px;
+  min-width: 48px;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.StatePage button:hover,
+.FunFactsPage button:hover {
+  opacity: 0.8;
+}
+
+.deleteButton {
+  background-color: red;
+}
+
+.editButton {
+  background-color: #333;
+}
+
+.modifyButton,
+.saveButton {
+  background-color: rgb(19, 93, 19);
+}
+
+.StatePage ul,
+.About ul {
+  margin: 0;
+  padding-left: 1.75rem; /* or 0 if you want no indent */
+}
+
+.StatePage li,
+.About li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.statusMsg {
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 610px) {
+  html {
+    font-size: 22px;
+  }
+
+  .Header h1 {
+    font-size: 2rem;
+  }
+
+  .Nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Nav ul {
+    text-align: right;
+  }
+
+  .Nav li:hover,
+  .Nav li:focus,
+  .Nav li:hover a,
+  .Nav li:focus a {
+    background-color: #eee;
+    color: #333;
+  }
+
+  .searchForm {
+    width: 50%;
+    padding: 0.5rem 0;
+  }
+
+  .searchForm input[type="text"] {
+    margin-left: 0.5rem;
+  }
+
+  .newFunFactForm textarea {
+    height: 300px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .Header svg {
+    font-size: 3rem;
+  }
+}
