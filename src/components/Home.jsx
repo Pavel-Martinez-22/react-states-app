@@ -7,7 +7,7 @@ const Home = ({ states, setStateCode, isLoading }) => {
       {!isLoading && states.length === 0 && (
         <p style={{ marginTop: "1rem" }}>No states to display.</p>
       )}
-      {states.length && <StateList states={states} setStateCode={setStateCode} />}
+      {states.length > 0 && <StateList states={states} setStateCode={setStateCode} />}
     </main>
   );
 };
