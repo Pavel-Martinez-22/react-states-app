@@ -6,8 +6,8 @@ const State = ({ state, setStateCode }) => {
       <Link to={`/state/${state.code}`} onClick={() => setStateCode(state.code)}>
         <h2>{state.state}</h2>
         <p className="stateCapital">Capital City: {state.capital_city}</p>
+        <p className="stateInfo"> Click for more details about {state.state}</p>
       </Link>
-      <p className="stateInfo"> Click for more details about {state.state}</p>
     </article>
   );
 };
