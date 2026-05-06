@@ -11,6 +11,7 @@ import Missing from "./components/Missing";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "./api/states";
+import useWindowSize from "./hooks/useWindowSize";
 
 function App() {
   const [states, setStates] = useState([]);
@@ -26,6 +27,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   //const [refetchKey, setRefetchKey] = useState(0);
   const navigate = useNavigate();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const fetchStates = async () => {
@@ -155,7 +157,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="States App" />
+      <Header title="States App" width={width} />
       <Nav search={search} setSearch={setSearch} />
 
       <Routes>
