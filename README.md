@@ -1,3 +1,19 @@
+# Name Pavel Martinez
+
+## Project Title: React Front-End for State Data
+
+## Description
+
+This project showcases my ability to build a front-end interface using React. The application includes search functionality, dynamic routing to individual state pages, and the ability for users to add new fun facts to each state.
+
+Through this project, I demonstrated my understanding of reusable components, prop drilling, and React hooks. I implemented client-side routing to create a multi-page user experience and direct users to specific components based on their interactions. A controlled form was used to capture user input and append new data to the corresponding state. Additionally, I leveraged React state and rendering logic to provide real-time search functionality across the state data.
+
+## Live Website
+
+<a href="https://react-states-app.onrender.com/" target="_blank" rel="noopener noreferrer">
+  View Project
+</a>
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
