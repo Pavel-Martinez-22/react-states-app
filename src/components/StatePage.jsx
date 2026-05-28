@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import FunFacts from "./Funfacts";
 
-const StatePage = ({ state, funFacts, isLoading, setStateCode }) => {
+const StatePage = ({ state, funFacts, fetchError, isLoading, setStateCode }) => {
   const { code } = useParams();
   const navigate = useNavigate();
 
@@ -14,7 +14,14 @@ const StatePage = ({ state, funFacts, isLoading, setStateCode }) => {
     <main className="StatePage">
       <article className="state">
         {isLoading && <p className="loading">Loading items...</p>}
-        {!isLoading && state && (
+
+        {!isLoading && fetchError && (
+          <p className="statusMsg" style={{ color: "red" }}>
+            {fetchError}
+          </p>
+        )}
+
+        {!isLoading && !fetchError && state && (
           <>
             <h2>{state.state}</h2>
             <ul>
@@ -57,7 +64,8 @@ const StatePage = ({ state, funFacts, isLoading, setStateCode }) => {
             )}
           </>
         )}
-        {!isLoading && !state && (
+
+        {!isLoading && !fetchError && !state && (
           <>
             <h2>State Not Found</h2>
             <p>

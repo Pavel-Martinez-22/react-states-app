@@ -12,72 +12,44 @@ import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "./api/states";
 import useWindowSize from "./hooks/useWindowSize";
+import useAxiosFetch from "./hooks/useAxiosFetch";
 
 function App() {
   const [states, setStates] = useState([]);
-  const [state, setState] = useState(null);
   const [funFacts, setFunFacts] = useState([]);
-  const [stateCode, setStateCode] = useState("");
+  const [stateCode, setStateCode] = useState(null);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [postFunFact, setPostFunFact] = useState("");
   const [postCode, setPostCode] = useState("");
   const [editFunFact, setEditFunFact] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   //const [refetchKey, setRefetchKey] = useState(0);
   const navigate = useNavigate();
   const { width } = useWindowSize();
+  const {
+    data: fetchedStates,
+    fetchError: statesFetchError,
+    isLoading: statesLoading,
+  } = useAxiosFetch("https://full-stack-api-states.onrender.com/states");
+
+  const stateUrl = stateCode
+    ? `https://full-stack-api-states.onrender.com/states/${stateCode}`
+    : null;
+
+  const {
+    data: fetchedState,
+    fetchError: stateFetchError,
+    isLoading: stateLoading,
+  } = useAxiosFetch(stateUrl);
 
   useEffect(() => {
-    const fetchStates = async () => {
-      setIsLoading(true);
-      try {
-        // Axios defines GET as: axios.get(url, config). GET requests do not send a request body, so the data returned by the API is provided entirely in the response object. Once the request succeeds, Axios places the parsed response payload on `response.data`, which we then store in state for use throughout the application.
-
-        const response = await api.get("/states");
-        if (response && response.data) setStates(response.data);
-      } catch (err) {
-        if (err.response) {
-          console.log("App.jsx - fetchStates() - data:", err.response.data);
-          console.log("App.jsx - fetchStates() - status:", err.response.status);
-          console.log("App.jsx - fetchStates() - headers:", err.response.headers);
-        } else {
-          console.log("App.jsx - fetchStates() - Errormessage:", err.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchStates();
-  }, []);
+    setStates(fetchedStates || []); // Ensure states is always an array, even if fetchedStates is null or undefined
+  }, [fetchedStates]);
 
   useEffect(() => {
-    const fetchState = async () => {
-      if (!stateCode) return;
-      setIsLoading(true);
-      try {
-        const response = await api.get(`/states/${stateCode}`);
-        if (response && response.data) {
-          setState(response.data);
-          setFunFacts(response.data.funfacts || []); // Assuming fun facts are part of the state data, adjust if they are separate
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log("App.jsx - fetchState() - data:", err.response.data);
-          console.log("App.jsx - fetchState() - status:", err.response.status);
-          console.log("App.jsx - fetchState() - headers:", err.response.headers);
-        } else {
-          console.log("App.jsx - fetchState() - Errormessage:", err.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchState();
-  }, [stateCode]); // [stateCode, refetchKey] removed it for now but can be used, refetchKey is included to allow re-fetching the state data after adding a new fun fact, ensuring the UI updates with the latest information
+    setFunFacts(fetchedState?.funfacts || []); // Assuming fun facts are part of the state data, adjust if they are separate
+  }, [fetchedState]);
 
   useEffect(() => {
     const filteredStates = states.filter(
@@ -165,7 +137,12 @@ function App() {
           <Route
             index
             element={
-              <Home states={searchResults} isLoading={isLoading} setStateCode={setStateCode} />
+              <Home
+                states={searchResults}
+                fetchError={statesFetchError}
+                isLoading={statesLoading}
+                setStateCode={setStateCode}
+              />
             }
           />
         </Route>
@@ -191,9 +168,10 @@ function App() {
             path=":code"
             element={
               <StatePage
-                state={state}
+                state={fetchedState}
                 funFacts={funFacts}
-                isLoading={isLoading}
+                fetchError={stateFetchError}
+                isLoading={stateLoading}
                 setStateCode={setStateCode}
               />
             }
@@ -203,7 +181,8 @@ function App() {
             element={
               <FunfactsPage
                 funFacts={funFacts}
-                isLoading={isLoading}
+                fetchError={stateFetchError}
+                isLoading={stateLoading}
                 setStateCode={setStateCode}
                 editingIndex={editingIndex}
                 editFunFact={editFunFact}

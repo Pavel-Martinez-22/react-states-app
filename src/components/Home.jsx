@@ -1,13 +1,22 @@
 import StateList from "./StateList";
 
-const Home = ({ states, setStateCode, isLoading }) => {
+const Home = ({ states, fetchError, isLoading, setStateCode }) => {
   return (
     <main className="Home">
       {isLoading && <p className="loading">Loading items...</p>}
-      {!isLoading && states.length === 0 && (
-        <p style={{ marginTop: "1rem" }}>No states to display.</p>
+      {!isLoading && fetchError && (
+        <p className="statusMsg" style={{ color: "red" }}>
+          {fetchError}
+        </p>
       )}
-      {states.length > 0 && <StateList states={states} setStateCode={setStateCode} />}
+
+      {!isLoading &&
+        !fetchError &&
+        (states.length === 0 ? (
+          <p style={{ marginTop: "1rem" }}>No states to display.</p>
+        ) : (
+          <StateList states={states} setStateCode={setStateCode} />
+        ))}
     </main>
   );
 };
