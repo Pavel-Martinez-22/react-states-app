@@ -45,9 +45,9 @@ const FunfactsPage = ({
             {funFacts.map((funfact, index) => (
               <article key={`fact-${index}`} className="state">
                 <label htmlFor={`funfact-${index}`}>Fun Fact {index + 1}:</label>
-                <input
-                  type="text"
+                <textarea
                   id={`funfact-${index}`}
+                  rows="2"
                   value={editingIndex === index ? editFunFact : funfact}
                   readOnly={editingIndex !== index}
                   onChange={(e) => {

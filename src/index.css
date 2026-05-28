@@ -157,16 +157,16 @@ body {
   border-bottom: 1px solid lightgray;
 }
 
-.FunFactsPage input[type="text"] {
+.FunFactsPage textarea {
   font: inherit;
-  appearance: none;
+  width: 100%;
+  resize: vertical; /* allows user to resize height */
   border: none;
   outline: none;
   background: none;
-  width: 100%;
-  margin: 0;
 }
-.FunFactsPage input[type="text"]:not(:read-only) {
+
+.FunFactsPage textarea:not(:read-only) {
   padding: 0.25rem;
   border: 1px solid black;
   border-radius: 0.25rem;
