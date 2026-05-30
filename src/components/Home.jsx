@@ -1,6 +1,14 @@
 import StateList from "./StateList";
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 
-const Home = ({ states, fetchError, isLoading, setStateCode }) => {
+const Home = () => {
+  const {
+    searchResults: states,
+    statesFetchError: fetchError,
+    statesLoading: isLoading,
+    setStateCode,
+  } = useContext(DataContext);
   return (
     <main className="Home">
       {isLoading && <p className="loading">Loading items...</p>}

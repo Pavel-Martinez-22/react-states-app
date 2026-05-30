@@ -1,4 +1,9 @@
-const ContributePage = ({ handleSubmit, postFunFact, setPostFunFact, postCode, setPostCode }) => {
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
+
+const ContributePage = () => {
+  const { handleSubmit, postFunFact, setPostFunFact, postCode, setPostCode } =
+    useContext(DataContext);
   return (
     <main className="NewFunFact">
       <h2>Contribute Fun Fact</h2>

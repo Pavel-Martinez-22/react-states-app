@@ -1,8 +1,17 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import FunFacts from "./Funfacts";
+import DataContext from "../context/DataContext";
 
-const StatePage = ({ state, funFacts, fetchError, isLoading, setStateCode }) => {
+const StatePage = () => {
+  const {
+    fetchedState: state,
+    funFacts,
+    stateFetchError: fetchError,
+    stateLoading: isLoading,
+    setStateCode,
+  } = useContext(DataContext);
+
   const { code } = useParams();
   const navigate = useNavigate();
 

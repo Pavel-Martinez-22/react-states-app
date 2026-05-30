@@ -1,17 +1,20 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import  DataContext  from "../context/DataContext";
 
-const FunfactsPage = ({
-  funFacts,
-  fetchError,
-  isLoading,
-  setStateCode,
-  editingIndex,
-  editFunFact,
-  setEditFunFact,
-  handleEdit,
-  handleDelete,
-}) => {
+const FunfactsPage = () => {
+  const {
+    funFacts,
+    stateFetchError: fetchError,
+    stateLoading: isLoading,
+    setStateCode,
+    editingIndex,
+    editFunFact,
+    setEditFunFact,
+    handleEdit,
+    handleDelete,
+  } = useContext(DataContext);
+
   const { code } = useParams();
 
   useEffect(() => {
