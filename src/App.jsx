@@ -14,8 +14,8 @@ import { DataProvider } from "./context/DataContext";
 function App() {
   return (
     <div className="App">
+      <Header title="States App" />
       <DataProvider>
-        <Header title="States App" />
         <Nav />
 
         <Routes>
@@ -37,9 +37,8 @@ function App() {
           <Route path="/about-api" element={<AboutAPI />} />
           <Route path="*" element={<Missing />} />
         </Routes>
-
-        <Footer />
       </DataProvider>
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import api from "../api/states";
-import useWindowSize from "../hooks/useWindowSize";
 import useAxiosFetch from "../hooks/useAxiosFetch";
 
 const DataContext = createContext({});
-
 export const DataProvider = ({ children }) => {
   const [states, setStates] = useState([]);
   const [funFacts, setFunFacts] = useState([]);
@@ -18,7 +16,6 @@ export const DataProvider = ({ children }) => {
   const [editingIndex, setEditingIndex] = useState(null);
   //const [refetchKey, setRefetchKey] = useState(0);
   const navigate = useNavigate();
-  const { width } = useWindowSize();
   const {
     data: fetchedStates,
     fetchError: statesFetchError,
@@ -122,7 +119,6 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
-        width,
         search,
         setSearch,
         searchResults,
