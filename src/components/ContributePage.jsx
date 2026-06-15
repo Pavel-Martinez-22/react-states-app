@@ -1,9 +1,37 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
+import api from "../api/states";
 
 const ContributePage = () => {
-  const { handleSubmit, postFunFact, setPostFunFact, postCode, setPostCode } =
-    useContext(DataContext);
+  const [postFunFact, setPostFunFact] = useState("");
+  const [postCode, setPostCode] = useState("");
+
+  const { setFunFacts } = useContext(DataContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //A Guard against empty input (prevents adding blank fun facts)
+    if (!postFunFact.trim()) return;
+    if (!postCode) return;
+
+    try {
+      // Axios POST signature: axios.post(url, requestBody, config) The second argument is treated as the request body and is automatically serialized to JSON. The state code is part of the URL path per the API design. Since we don’t need custom headers or other options, the config argument is omitted.
+
+      const response = await api.post(`/states/${postCode}/funfact`, {
+        funfacts: [postFunFact.trim()], // The API expects an array of fun facts, we wrap the single fun fact in an array.
+      });
+      setFunFacts(response.data.funfacts || []); // Assuming fun facts are part of the state data, adjust if they are separate
+      setPostCode("");
+      setPostFunFact("");
+      navigate(`/state/${response.data.stateCode}`); // Navigate to the state page of the newly added fun fact
+      // setRefetchKey((prev) => prev + 1); // Trigger re-fetch of state data to update the UI with the new fun fact
+    } catch (err) {
+      console.log("App.jsx - handleSubmit() - Errormessage:", err.message);
+    }
+  };
+
   return (
     <main className="NewFunFact">
       <h2>Contribute Fun Fact</h2>
