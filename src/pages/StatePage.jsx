@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
-import FunFacts from "../components/FunFacts";
+import Funfacts from "../components/Funfacts";
 import DataContext from "../context/DataContext";
 
 const StatePage = () => {
