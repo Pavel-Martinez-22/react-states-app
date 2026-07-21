@@ -59,7 +59,7 @@ const StatePage = () => {
                 <ul>
                   {funFacts.map((funfact, index) => (
                     <li key={`fact-${index}`}>
-                      <FunFacts funfact={funfact} />
+                      <Funfacts funfact={funfact} />
                     </li>
                   ))}
                 </ul>
