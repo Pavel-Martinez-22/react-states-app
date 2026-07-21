@@ -1,4 +1,4 @@
-import StateList from "./StateList";
+import StateList from "../components/StateList";
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 

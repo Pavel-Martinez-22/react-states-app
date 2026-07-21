@@ -1,13 +1,13 @@
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import Home from "./components/Home";
-import ContributePage from "./components/ContributePage";
-import StatePage from "./components/StatePage";
-import FunfactsPage from "./components/FunfactsPage";
-import AboutInterface from "./components/AboutInterface";
-import AboutAPI from "./components/AboutAPI";
-import Missing from "./components/Missing";
+import Home from "./pages/Home";
+import ContributePage from "./pages/ContributePage";
+import StatePage from "./pages/StatePage";
+import FunfactsPage from "./pages/FunfactsPage";
+import AboutInterface from "./pages/AboutInterface";
+import AboutAPI from "./pages/AboutAPI";
+import Missing from "./pages/Missing";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 
